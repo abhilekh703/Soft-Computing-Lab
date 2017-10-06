@@ -24,8 +24,7 @@ def naivebayes(extractedData):
         return ans
 
     r,c=extractedData.shape
-    #print r
-    #print c
+    
     county=0
     countn=0
     for i in range(r):
@@ -60,16 +59,16 @@ def naivebayes(extractedData):
         py=float(county/(r*1.0))
         pn=float(countn/(r*1.0))
         for j in range(c-1):
-            py*=expoy(extractedData[i,j],j)   #Naive bayes probability given yes
+            py*=expoy(extractedData[i,j],j)  
             pn*=expon(extractedData[i,j],j)
         if(py>=pn):
             pred='Yes'
             if(extractedData[i,c-1]==pred):
-                acc+=1  #TP
+                acc+=1 
         else:
             pred='No'
             if(extractedData[i,c-1]==pred):
-                acc+=1  #TN
+                acc+=1 
 
     accuracy=float(acc/(r*1.0))
     #print accuracy
@@ -87,28 +86,25 @@ def buildDataFindAccu():
         selec.append(cols-1)
         extractedData=data[:,selec]
         extractedData=np.array(extractedData)
-        #for i in range(rows):
-        #    print extractedData[i]
-        #print "overrrr"
-        #now i have to find accuracy over the given dataset
+        
         ans=naivebayes(extractedData)
         accu.append(ans)
     accu=np.array(accu)
     #print accu
     return accu
 
-#Read from file
+
 df=pd.read_csv('SPECTF_New.csv')
-#Shuffle the dataset
+
 df=df.sample(frac=1)
-#Convert the dataset to a matrix
+
 data=df.as_matrix()
-#Return dimensions of a matrix
+
 rows,cols=df.shape
 #print rows
 #print cols
-#-----initialize cromosome------
-#generate 30 random cromosomes of length no. of attributes
+
+
 cromo=[[0]*(cols-1) for i in range(30)]
 cromo=np.array(cromo)
 for i in range(30):
@@ -118,10 +114,10 @@ for i in range(30):
 """for i in range(30):
     print cromo[i]"""
 
-#-----fitness evaluation---------
+
 accu=buildDataFindAccu()
 
-#---------Selection---------------
+
 
 flag=0
 ite=0
@@ -194,7 +190,7 @@ while(ite<30):
     """print "ChromoNew"
     for i in range(30):
         print cromo[i]"""
-    #------------------------------cross over---------------------------------------
+  
     crossNo=int(0.25*30)
     #print crossNo
     crossSelected=[-1]*crossNo
@@ -231,13 +227,13 @@ while(ite<30):
         print cromo[i]
 
 
-    #---------------------------Mutation--------------------------------------------
+
     mutateNo=int(0.10*30*(cols-1))
     mutSele=random.sample(range(0,(30*(cols-1))),mutateNo)
     for i in range(mutateNo):
         rn=int(mutSele[i]/(cols-1))
         cn=int(mutSele[i]%(cols-1))
-        print "rn ",rn," cn ",cn
+        print "row ",rn," column ",cn
         x=cromo[rn]
         x=np.array(x)
         if(x[cn]==0):
@@ -257,17 +253,21 @@ while(ite<30):
             accu[cromo[rn]]=ans
             cromo[rn]=x
 
-    print "After Mutation"
+    print "Chromosomes After Mutation"
     for i in range(30):
         print cromo[i]
-    print "accuracy array\n",accu
+    print "accuracy\n",accu
     ite+=1
-print "over"
+print "process over"
 #print accu
 finalMaxaccuIndex=np.argmax(accu)
-print "Cromosomes selected"
+print "Chromosomes are "
+
+for i in range (0 , 44):
+	if(cromo[finalMaxaccuIndex+i]==1):
+		print i+1
 print cromo[finalMaxaccuIndex,:]
-print "accuracy naive bayes using selected features ",accu[finalMaxaccuIndex]
+print "accuracy using GA ",accu[finalMaxaccuIndex]
 
 
 def naiveAccu():
