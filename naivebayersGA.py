@@ -132,7 +132,7 @@ while(ite<30):
         if(accu[accuCount]==accu[accuCount+1]):
             flag+=1
     if(flag==29):
-        print "Accu for all same in iteration ",ite
+        print "Accu for all is same in iteration ",ite
         break          
     
     accuSum=0
@@ -269,6 +269,14 @@ print "Cromosomes selected"
 print cromo[finalMaxaccuIndex,:]
 print "accuracy naive bayes using selected features ",accu[finalMaxaccuIndex]
 
+
+def naiveAccu():
+    ans=naivebayes(data)
+    return ans
+
+
+print "Naive bais accuracy"
+print naiveAccu()
 
 
 
