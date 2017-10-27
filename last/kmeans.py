@@ -8,17 +8,17 @@ df=pd.read_csv('SPECTF_New.csv')
 data=df.as_matrix()
 rows,cols=df.shape
 classlabel=data[0::,cols-1]
-print classlabel
+#print classlabel
 data=data[0::,0:cols-1]
-print data
-print '\nrows ',rows,' cols ',cols, '\n'
+#print data
+print '\nnumber of rows ',rows,'number of cols ',cols, '\n'
 
 k=2
 c1=[]
 c2=[]
 selected=random.sample(range(0,rows),k)
-print selected[0]
-print selected[1]
+print 'first selected',selected[0]
+print 'second selected',selected[1]
 
 for i in range(cols-1):
     c1.append(data[selected[0],i]*1.0)
@@ -115,12 +115,12 @@ for i in range(len(clus1)):
         yclu1+=1
     else:
         nclu1+=1
-print 'yclu1 ',yclu1,' nclu1 ',nclu1
+print 'yes in cluster1 ',yclu1,' no in cluster1 ',nclu1
 if(yclu1>=nclu1):
-    print "clus1 have a cluster of yes"
+    print "cluster1 have a cluster of yes"
     clusp1='Yes'
 else:
-    print "clus1 have a cluster of no"
+    print "cluster1 have a cluster of no"
     clusp1='No'
 
 for i in range(len(clus1)):
@@ -135,16 +135,16 @@ for i in range(len(clus2)):
         yclu2+=1
     else:
         nclu2+=1
-print 'yclu2 ',yclu2,' nclu2 ',nclu2
+print 'yes in cluster2 ',yclu2,' no in cluster2 ',nclu2
 if(yclu2>=nclu2):
-    print "clus2 have a cluster of yes"
+    print "cluster2 have a cluster of yes"
     clusp2='Yes'
 else:
-    print "clus2 have a cluster of no"
+    print "cluster2 have a cluster of no"
     clusp2='No'
 
 for i in range(len(clus2)):
     if(classlabel[clus2[i]]==clusp2):
         acc+=1
 
-print "accuracy ",float(acc/(rows*1.0))*100
+print "accuracy of Kmeans",float(acc/(rows*1.0))*100

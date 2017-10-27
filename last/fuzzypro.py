@@ -28,8 +28,8 @@ m=raw_input("Enter fuzziness parameter\n")
 m=float(m)
 
 selected=random.sample(range(0,rows),c)
-print selected[0]
-print selected[1]
+print 'first selected',selected[0]
+print 'second selected',selected[1]
 
 for i in range(cols-1):
     c1.append(data[selected[0],i])
@@ -77,11 +77,11 @@ while(ite<50):
                 deno+=float(math.pow(par,po))
         if(deno!=0):
             ans=float(1/(deno*1.0))
-            print ans
+            #print ans
             u[i,0]=ans
         u[i,1]=1-u[i,0]
     
-    print u
+    #print u
 
     clu1=[]
     clu2=[]
@@ -149,7 +149,7 @@ for i in range(len(cluster1)):
         yclu1+=1
     else:
         nclu1+=1
-print 'yclu1 ',yclu1,' nclu1 ',nclu1
+print 'yes in cluster1 ',yclu1,' no in cluster1 ',nclu1
 if(yclu1>=nclu1):
     print "clus1 have a cluster of yes"
     clusp1='Yes'
@@ -168,7 +168,7 @@ for i in range(len(cluster2)):
         yclu2+=1
     else:
         nclu2+=1
-print 'yclu2 ',yclu2,' nclu2 ',nclu2
+print 'yes in cluster2 ',yclu2,' no in cluster2 ',nclu2
 if(yclu2>=nclu2):
     print "clus2 have a cluster of yes"
     clusp2='Yes'
