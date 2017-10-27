@@ -91,10 +91,10 @@ while(ite<50):
         num2=0
         den2=0
         for j in range(rows):
-            num1+=math.pow(u[j,0],2)*data[j,i]
-            den1+=math.pow(u[j,0],2)
-            num2+=math.pow(u[j,1],2)*data[j,i]
-            den2+=math.pow(u[j,1],2)
+            num1+=math.pow(u[j,0],m)*data[j,i]
+            den1+=math.pow(u[j,0],m)
+            num2+=math.pow(u[j,1],m)*data[j,i]
+            den2+=math.pow(u[j,1],m)
         ans1=float(num1/(den1*1.0))
         ans2=float(num2/(den2*1.0))
         clu1.append(ans1)

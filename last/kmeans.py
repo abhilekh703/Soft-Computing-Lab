@@ -30,6 +30,7 @@ c1=np.array(c1)
 c2=np.array(c2)
 print 'c1 is ',c1
 print 'c2 is ',c2
+
 clus1=[]
 clus2=[]
 flag=0
